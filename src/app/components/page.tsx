@@ -1,4 +1,7 @@
+"use client";
+
 import { Badge } from "@/components/ui/badge";
+import { InteractiveControls } from "@/components/interactive-controls";
 
 const components = [
   {
@@ -93,6 +96,11 @@ export default function ComponentsPage() {
             </span>
           </div>
         ))}
+      </div>
+
+      {/* Interactive showcase */}
+      <div className="mt-16">
+        <InteractiveControls />
       </div>
     </section>
   );

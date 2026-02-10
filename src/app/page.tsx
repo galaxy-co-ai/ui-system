@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { HeroSection } from "@/components/hero-section";
-import { InteractiveControls } from "@/components/interactive-controls";
 import { RightDrawer } from "@/components/right-drawer";
 
 export default function Home() {
@@ -11,7 +10,6 @@ export default function Home() {
   return (
     <>
       <HeroSection onOpenDrawer={() => setDrawerOpen(true)} />
-      <InteractiveControls />
 
       <RightDrawer
         isOpen={drawerOpen}

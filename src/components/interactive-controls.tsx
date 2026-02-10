@@ -369,27 +369,9 @@ const showcaseTabs = [
 
 export function InteractiveControls() {
   return (
-    <section id="showcase" className="mx-auto flex min-h-screen max-w-3xl flex-col justify-center px-8 py-16">
-      {/* Section header */}
-      <span
-        className="text-[11px] uppercase tracking-[0.2em] text-white/30"
-        style={{ fontFamily: "var(--font-code)" }}
-      >
-        Interactive Controls
-      </span>
-      <h2
-        className="mt-2 text-[clamp(22px,3vw,32px)] font-semibold leading-[1.2] text-white"
-        style={{ fontFamily: "var(--font-display)" }}
-      >
-        Component Library
-      </h2>
-      <p className="mt-3 max-w-[50ch] text-[15px] leading-relaxed text-white/40">
-        Interactive components built on shadcn/ui, styled with glass material
-        and spring easing.
-      </p>
-
+    <div id="showcase">
       {/* Tabbed showcase */}
-      <Tabs defaultValue="buttons" className="mt-10">
+      <Tabs defaultValue="buttons">
         <TabsList
           className="h-auto border border-white/[0.06] bg-white/[0.03] p-1"
           style={{ borderRadius: "var(--radius-lg)" }}
@@ -415,6 +397,6 @@ export function InteractiveControls() {
           </TabsContent>
         ))}
       </Tabs>
-    </section>
+    </div>
   );
 }
