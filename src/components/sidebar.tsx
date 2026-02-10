@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -9,7 +10,10 @@ import {
   Type,
   LayoutGrid,
   Sparkles,
+  Sun,
+  Moon,
 } from "lucide-react";
+import { useTheme } from "next-themes";
 import {
   Sheet,
   SheetContent,
@@ -32,6 +36,28 @@ interface SidebarProps {
   onToggleCollapse?: () => void;
 }
 
+function ThemeToggle({ size = 15 }: { size?: number }) {
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
+  if (!mounted) return <div style={{ width: size, height: size }} />;
+
+  return (
+    <button
+      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+      className="flex items-center justify-center text-ink/40 transition-colors duration-200 hover:text-ink/70 focus-visible:ring-2 focus-visible:ring-ink/20 focus-visible:outline-none"
+      style={{
+        borderRadius: "var(--radius-sm)",
+        transitionTimingFunction: "var(--ease-spring)",
+      }}
+      aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+    >
+      {theme === "dark" ? <Sun size={size} strokeWidth={1.5} /> : <Moon size={size} strokeWidth={1.5} />}
+    </button>
+  );
+}
+
 function SidebarContent({
   onNavigate,
   isCollapsed = false,
@@ -43,19 +69,25 @@ function SidebarContent({
 
   return (
     <>
-      {/* Logo */}
+      {/* Logo + theme toggle */}
       <div className="px-5 pt-6 pb-5">
         {isCollapsed ? (
-          <span className="block text-center text-[13px] font-medium tracking-wide text-ink/50 uppercase">
-            DS
-          </span>
-        ) : (
-          <>
-            <span className="block text-[13px] font-medium tracking-wide text-ink/50 uppercase">
-              Design System
+          <div className="flex flex-col items-center gap-3">
+            <span className="text-[13px] font-medium tracking-wide text-ink/50 uppercase">
+              DS
             </span>
-            <span className="block mt-0.5 text-[11px] text-ink/30">v0.1.0</span>
-          </>
+            <ThemeToggle size={14} />
+          </div>
+        ) : (
+          <div className="flex items-start justify-between">
+            <div>
+              <span className="block text-[13px] font-medium tracking-wide text-ink/50 uppercase">
+                Design System
+              </span>
+              <span className="block mt-0.5 text-[11px] text-ink/30">v0.1.0</span>
+            </div>
+            <ThemeToggle />
+          </div>
         )}
       </div>
 
