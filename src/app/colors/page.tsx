@@ -41,7 +41,7 @@ const shadows = [
 
 const statusColors = [
   { label: "Live", border: "border-emerald-500/20", bg: "bg-emerald-500/10", text: "text-emerald-400" },
-  { label: "Draft", border: "border-white/[0.08]", bg: "bg-white/[0.05]", text: "text-white/50" },
+  { label: "Draft", border: "border-ink/[0.08]", bg: "bg-ink/[0.05]", text: "text-ink/50" },
   { label: "Deprecated", border: "border-red-500/20", bg: "bg-red-500/10", text: "text-red-400" },
   { label: "Beta", border: "border-purple-500/20", bg: "bg-purple-500/10", text: "text-purple-400" },
   { label: "New", border: "border-yellow-500/20", bg: "bg-yellow-500/10", text: "text-yellow-400" },
@@ -57,13 +57,13 @@ function SectionHeader({ eyebrow, title }: { eyebrow: string; title: string }) {
   return (
     <div className="mb-8">
       <span
-        className="text-[11px] uppercase tracking-[0.2em] text-white/30"
+        className="text-[11px] uppercase tracking-[0.2em] text-ink/30"
         style={{ fontFamily: "var(--font-code)" }}
       >
         {eyebrow}
       </span>
       <h2
-        className="mt-2 text-[clamp(20px,3vw,32px)] font-bold leading-[1.1] tracking-[-0.01em] text-white"
+        className="mt-2 text-[clamp(20px,3vw,32px)] font-bold leading-[1.1] tracking-[-0.01em] text-ink"
         style={{ fontFamily: "var(--font-display)" }}
       >
         {title}
@@ -77,13 +77,13 @@ export default function ColorsPage() {
     <section className="mx-auto max-w-3xl px-8 pb-32 pt-20">
       {/* Page header */}
       <span
-        className="text-[11px] uppercase tracking-[0.2em] text-white/30"
+        className="text-[11px] uppercase tracking-[0.2em] text-ink/30"
         style={{ fontFamily: "var(--font-code)" }}
       >
         Design Tokens
       </span>
       <h1
-        className="mt-2 text-[clamp(28px,4vw,48px)] font-bold leading-[1.1] tracking-[-0.02em] text-white"
+        className="mt-2 text-[clamp(28px,4vw,48px)] font-bold leading-[1.1] tracking-[-0.02em] text-ink"
         style={{ fontFamily: "var(--font-display)" }}
       >
         Colors
@@ -103,7 +103,7 @@ export default function ColorsPage() {
           {neutralPalette.map(({ step, hex, variable, usage }) => (
             <div key={step} className="group">
               <div
-                className="aspect-square border border-white/[0.06] transition-transform duration-200 hover:scale-105"
+                className="aspect-square border border-ink/[0.06] transition-transform duration-200 hover:scale-105"
                 style={{
                   backgroundColor: hex,
                   borderRadius: "var(--radius-md)",
@@ -112,19 +112,19 @@ export default function ColorsPage() {
               />
               <div className="mt-2">
                 <span
-                  className="block text-[11px] text-white/60"
+                  className="block text-[11px] text-ink/60"
                   style={{ fontFamily: "var(--font-code)" }}
                 >
                   {variable}
                 </span>
                 <span
-                  className="block text-[10px] text-white/30 mt-0.5"
+                  className="block text-[10px] text-ink/30 mt-0.5"
                   style={{ fontFamily: "var(--font-code)" }}
                 >
                   {hex}
                 </span>
               </div>
-              <p className="mt-1 text-[10px] text-white/25 leading-snug hidden group-hover:block">
+              <p className="mt-1 text-[10px] text-ink/25 leading-snug hidden group-hover:block">
                 {usage}
               </p>
             </div>
@@ -139,11 +139,11 @@ export default function ColorsPage() {
           {semanticText.map(({ variable, value, desc }) => (
             <div
               key={variable}
-              className="flex items-center gap-4 border border-white/[0.06] bg-white/[0.02] px-5 py-3.5"
+              className="flex items-center gap-4 border border-ink/[0.06] bg-ink/[0.02] px-5 py-3.5"
               style={{ borderRadius: "var(--radius-lg)" }}
             >
               <div
-                className="h-8 w-8 shrink-0 border border-white/[0.06]"
+                className="h-8 w-8 shrink-0 border border-ink/[0.06]"
                 style={{
                   backgroundColor: variable === "--text-primary" ? "#e8e8e8" : variable === "--text-secondary" ? "#8a8a8a" : "#6b6b6b",
                   borderRadius: "var(--radius-sm)",
@@ -151,15 +151,15 @@ export default function ColorsPage() {
               />
               <div className="flex-1 min-w-0">
                 <span
-                  className="text-[12px] text-white/70"
+                  className="text-[12px] text-ink/70"
                   style={{ fontFamily: "var(--font-code)" }}
                 >
                   {variable}
                 </span>
-                <p className="text-[12px] text-white/35 mt-0.5">{desc}</p>
+                <p className="text-[12px] text-ink/35 mt-0.5">{desc}</p>
               </div>
               <span
-                className="text-[11px] text-white/25 shrink-0"
+                className="text-[11px] text-ink/25 shrink-0"
                 style={{ fontFamily: "var(--font-code)" }}
               >
                 {value}
@@ -172,12 +172,12 @@ export default function ColorsPage() {
       {/* Glass & Surfaces */}
       <div className="mt-16">
         <SectionHeader eyebrow="Surfaces" title="Glass Morphism" />
-        <p className="text-[13px] text-white/40 -mt-4 mb-6 max-w-[50ch]">
+        <p className="text-[13px] text-ink/40 -mt-4 mb-6 max-w-[50ch]">
           Applied to sidebar, floating nav, inspector drawer, and modal overlays.
         </p>
         {/* Visual demo */}
         <div
-          className="relative mb-6 overflow-hidden border border-white/[0.06] p-8"
+          className="relative mb-6 overflow-hidden border border-ink/[0.06] p-8"
           style={{
             borderRadius: "var(--radius-lg)",
             background: "linear-gradient(135deg, #1a1918 0%, #262524 50%, #333231 100%)",
@@ -195,12 +195,12 @@ export default function ColorsPage() {
               WebkitBackdropFilter: "blur(var(--glass-blur)) saturate(var(--glass-saturate))",
               borderRadius: "var(--radius-lg)",
               boxShadow: "var(--shadow-glass)",
-              border: "1px solid rgba(255,255,255,0.06)",
+              border: "1px solid var(--surface-glass-border)",
             }}
           >
-            <span className="text-[13px] text-white/70">Glass surface</span>
+            <span className="text-[13px] text-ink/70">Glass surface</span>
             <span
-              className="block mt-1 text-[11px] text-white/30"
+              className="block mt-1 text-[11px] text-ink/30"
               style={{ fontFamily: "var(--font-code)" }}
             >
               blur(20px) saturate(180%)
@@ -212,20 +212,20 @@ export default function ColorsPage() {
           {glassTokens.map(({ variable, value, desc }) => (
             <div
               key={variable}
-              className="flex items-center justify-between border border-white/[0.06] bg-white/[0.02] px-5 py-3"
+              className="flex items-center justify-between border border-ink/[0.06] bg-ink/[0.02] px-5 py-3"
               style={{ borderRadius: "var(--radius-lg)" }}
             >
               <div>
                 <span
-                  className="text-[12px] text-white/70"
+                  className="text-[12px] text-ink/70"
                   style={{ fontFamily: "var(--font-code)" }}
                 >
                   {variable}
                 </span>
-                <p className="text-[11px] text-white/30 mt-0.5">{desc}</p>
+                <p className="text-[11px] text-ink/30 mt-0.5">{desc}</p>
               </div>
               <span
-                className="text-[11px] text-white/25 shrink-0 ml-4"
+                className="text-[11px] text-ink/25 shrink-0 ml-4"
                 style={{ fontFamily: "var(--font-code)" }}
               >
                 {value}
@@ -242,18 +242,18 @@ export default function ColorsPage() {
           {shadows.map(({ variable, value, desc }) => (
             <div
               key={variable}
-              className="border border-white/[0.06] bg-white/[0.02] px-5 py-4"
+              className="border border-ink/[0.06] bg-ink/[0.02] px-5 py-4"
               style={{ borderRadius: "var(--radius-lg)" }}
             >
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <span
-                    className="text-[12px] text-white/70"
+                    className="text-[12px] text-ink/70"
                     style={{ fontFamily: "var(--font-code)" }}
                   >
                     {variable}
                   </span>
-                  <p className="text-[12px] text-white/35 mt-0.5">{desc}</p>
+                  <p className="text-[12px] text-ink/35 mt-0.5">{desc}</p>
                 </div>
                 <div
                   className="h-10 w-16 shrink-0"
@@ -265,7 +265,7 @@ export default function ColorsPage() {
                 />
               </div>
               <span
-                className="block mt-2 text-[10px] text-white/20 break-all leading-relaxed"
+                className="block mt-2 text-[10px] text-ink/20 break-all leading-relaxed"
                 style={{ fontFamily: "var(--font-code)" }}
               >
                 {value}
@@ -292,9 +292,9 @@ export default function ColorsPage() {
         <div className="mt-4 space-y-1.5">
           {statusColors.map(({ label, border, bg, text }) => (
             <div key={label} className="flex items-center gap-3">
-              <span className="text-[12px] text-white/50 w-24">{label}</span>
+              <span className="text-[12px] text-ink/50 w-24">{label}</span>
               <span
-                className="text-[11px] text-white/25"
+                className="text-[11px] text-ink/25"
                 style={{ fontFamily: "var(--font-code)" }}
               >
                 {border} {bg} {text}

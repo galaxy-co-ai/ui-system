@@ -78,25 +78,25 @@ function EasingCurve({ x1, y1, x2, y2 }: { x1: number; y1: number; x2: number; y
   return (
     <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`} className="shrink-0">
       {/* Grid */}
-      <line x1={pad} y1={pad} x2={pad} y2={h - pad} stroke="rgba(255,255,255,0.06)" strokeWidth={1} />
-      <line x1={pad} y1={h - pad} x2={w - pad} y2={h - pad} stroke="rgba(255,255,255,0.06)" strokeWidth={1} />
+      <line x1={pad} y1={pad} x2={pad} y2={h - pad} stroke="rgba(var(--ink-rgb),0.06)" strokeWidth={1} />
+      <line x1={pad} y1={h - pad} x2={w - pad} y2={h - pad} stroke="rgba(var(--ink-rgb),0.06)" strokeWidth={1} />
       {/* Control point lines */}
-      <line x1={sx} y1={sy} x2={cp1x} y2={cp1y} stroke="rgba(255,255,255,0.12)" strokeWidth={1} strokeDasharray="2 2" />
-      <line x1={ex} y1={ey} x2={cp2x} y2={cp2y} stroke="rgba(255,255,255,0.12)" strokeWidth={1} strokeDasharray="2 2" />
+      <line x1={sx} y1={sy} x2={cp1x} y2={cp1y} stroke="rgba(var(--ink-rgb),0.12)" strokeWidth={1} strokeDasharray="2 2" />
+      <line x1={ex} y1={ey} x2={cp2x} y2={cp2y} stroke="rgba(var(--ink-rgb),0.12)" strokeWidth={1} strokeDasharray="2 2" />
       {/* Curve */}
       <path
         d={`M ${sx} ${sy} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${ex} ${ey}`}
         fill="none"
-        stroke="rgba(255,255,255,0.6)"
+        stroke="rgba(var(--ink-rgb),0.6)"
         strokeWidth={2}
         strokeLinecap="round"
       />
       {/* Control points */}
-      <circle cx={cp1x} cy={cp1y} r={3} fill="rgba(255,255,255,0.4)" />
-      <circle cx={cp2x} cy={cp2y} r={3} fill="rgba(255,255,255,0.4)" />
+      <circle cx={cp1x} cy={cp1y} r={3} fill="rgba(var(--ink-rgb),0.4)" />
+      <circle cx={cp2x} cy={cp2y} r={3} fill="rgba(var(--ink-rgb),0.4)" />
       {/* Endpoints */}
-      <circle cx={sx} cy={sy} r={3} fill="white" />
-      <circle cx={ex} cy={ey} r={3} fill="white" />
+      <circle cx={sx} cy={sy} r={3} fill="var(--ink)" />
+      <circle cx={ex} cy={ey} r={3} fill="var(--ink)" />
     </svg>
   );
 }
@@ -108,14 +108,14 @@ function MotionDemo({ easing, duration }: { easing: string; duration: string }) 
     <div className="flex items-center gap-3">
       <button
         onClick={() => { setPlaying(false); requestAnimationFrame(() => setPlaying(true)); }}
-        className="text-[11px] text-white/40 hover:text-white/70 transition-colors duration-150 shrink-0"
+        className="text-[11px] text-ink/40 hover:text-ink/70 transition-colors duration-150 shrink-0"
         style={{ fontFamily: "var(--font-code)" }}
       >
         Play &rarr;
       </button>
-      <div className="flex-1 h-8 bg-white/[0.03] overflow-hidden" style={{ borderRadius: "var(--radius-sm)" }}>
+      <div className="flex-1 h-8 bg-ink/[0.03] overflow-hidden" style={{ borderRadius: "var(--radius-sm)" }}>
         <div
-          className="h-full w-6 bg-white/30"
+          className="h-full w-6 bg-ink/30"
           style={{
             borderRadius: "var(--radius-xs)",
             transform: playing ? "translateX(calc(100cqw - 100%))" : "translateX(0)",
@@ -133,13 +133,13 @@ export default function MotionPage() {
     <section className="mx-auto max-w-3xl px-8 pb-32 pt-20">
       {/* Page header */}
       <span
-        className="text-[11px] uppercase tracking-[0.2em] text-white/30"
+        className="text-[11px] uppercase tracking-[0.2em] text-ink/30"
         style={{ fontFamily: "var(--font-code)" }}
       >
         Design Tokens
       </span>
       <h1
-        className="mt-2 text-[clamp(28px,4vw,48px)] font-bold leading-[1.1] tracking-[-0.02em] text-white"
+        className="mt-2 text-[clamp(28px,4vw,48px)] font-bold leading-[1.1] tracking-[-0.02em] text-ink"
         style={{ fontFamily: "var(--font-display)" }}
       >
         Motion
@@ -156,13 +156,13 @@ export default function MotionPage() {
       <div className="mt-16">
         <div className="mb-8">
           <span
-            className="text-[11px] uppercase tracking-[0.2em] text-white/30"
+            className="text-[11px] uppercase tracking-[0.2em] text-ink/30"
             style={{ fontFamily: "var(--font-code)" }}
           >
             Easing
           </span>
           <h2
-            className="mt-2 text-[clamp(20px,3vw,32px)] font-bold leading-[1.1] tracking-[-0.01em] text-white"
+            className="mt-2 text-[clamp(20px,3vw,32px)] font-bold leading-[1.1] tracking-[-0.01em] text-ink"
             style={{ fontFamily: "var(--font-display)" }}
           >
             Curves
@@ -172,26 +172,26 @@ export default function MotionPage() {
           {easingCurves.map(({ name, variable, value, usage, points }) => (
             <div
               key={name}
-              className="border border-white/[0.06] bg-white/[0.02] p-5"
+              className="border border-ink/[0.06] bg-ink/[0.02] p-5"
               style={{ borderRadius: "var(--radius-lg)" }}
             >
               <div className="flex items-start gap-5">
                 <EasingCurve {...points} />
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-[14px] font-medium text-white">{name}</h3>
+                  <h3 className="text-[14px] font-medium text-ink">{name}</h3>
                   <span
-                    className="block text-[11px] text-white/30 mt-0.5"
+                    className="block text-[11px] text-ink/30 mt-0.5"
                     style={{ fontFamily: "var(--font-code)" }}
                   >
                     {variable}
                   </span>
                   <span
-                    className="block text-[11px] text-white/20 mt-0.5"
+                    className="block text-[11px] text-ink/20 mt-0.5"
                     style={{ fontFamily: "var(--font-code)" }}
                   >
                     {value}
                   </span>
-                  <p className="text-[12px] text-white/40 mt-2">{usage}</p>
+                  <p className="text-[12px] text-ink/40 mt-2">{usage}</p>
                   <div className="mt-3">
                     <MotionDemo easing={value} duration="400ms" />
                   </div>
@@ -206,13 +206,13 @@ export default function MotionPage() {
       <div className="mt-16">
         <div className="mb-8">
           <span
-            className="text-[11px] uppercase tracking-[0.2em] text-white/30"
+            className="text-[11px] uppercase tracking-[0.2em] text-ink/30"
             style={{ fontFamily: "var(--font-code)" }}
           >
             Timing
           </span>
           <h2
-            className="mt-2 text-[clamp(20px,3vw,32px)] font-bold leading-[1.1] tracking-[-0.01em] text-white"
+            className="mt-2 text-[clamp(20px,3vw,32px)] font-bold leading-[1.1] tracking-[-0.01em] text-ink"
             style={{ fontFamily: "var(--font-display)" }}
           >
             Duration Scale
@@ -222,23 +222,23 @@ export default function MotionPage() {
           {durations.map(({ name, variable, value, usage }) => (
             <div
               key={name}
-              className="flex items-center justify-between border border-white/[0.06] bg-white/[0.02] px-5 py-3.5"
+              className="flex items-center justify-between border border-ink/[0.06] bg-ink/[0.02] px-5 py-3.5"
               style={{ borderRadius: "var(--radius-lg)" }}
             >
               <div>
                 <div className="flex items-center gap-3">
-                  <span className="text-[13px] text-white/60">{name}</span>
+                  <span className="text-[13px] text-ink/60">{name}</span>
                   <span
-                    className="text-[11px] text-white/25"
+                    className="text-[11px] text-ink/25"
                     style={{ fontFamily: "var(--font-code)" }}
                   >
                     {variable}
                   </span>
                 </div>
-                <p className="text-[11px] text-white/30 mt-0.5">{usage}</p>
+                <p className="text-[11px] text-ink/30 mt-0.5">{usage}</p>
               </div>
               <span
-                className="text-[14px] text-white/50 font-medium shrink-0"
+                className="text-[14px] text-ink/50 font-medium shrink-0"
                 style={{ fontFamily: "var(--font-code)", fontVariantNumeric: "tabular-nums" }}
               >
                 {value}
@@ -251,14 +251,14 @@ export default function MotionPage() {
           {durations.map(({ name, value }) => (
             <div key={name} className="flex flex-col items-center gap-1">
               <div
-                className="bg-white/20"
+                className="bg-ink/20"
                 style={{
                   width: `${parseInt(value) / 3}px`,
                   height: "4px",
                   borderRadius: "var(--radius-pill)",
                 }}
               />
-              <span className="text-[9px] text-white/20">{value}</span>
+              <span className="text-[9px] text-ink/20">{value}</span>
             </div>
           ))}
         </div>
@@ -268,13 +268,13 @@ export default function MotionPage() {
       <div className="mt-16">
         <div className="mb-8">
           <span
-            className="text-[11px] uppercase tracking-[0.2em] text-white/30"
+            className="text-[11px] uppercase tracking-[0.2em] text-ink/30"
             style={{ fontFamily: "var(--font-code)" }}
           >
             Rules
           </span>
           <h2
-            className="mt-2 text-[clamp(20px,3vw,32px)] font-bold leading-[1.1] tracking-[-0.01em] text-white"
+            className="mt-2 text-[clamp(20px,3vw,32px)] font-bold leading-[1.1] tracking-[-0.01em] text-ink"
             style={{ fontFamily: "var(--font-display)" }}
           >
             Motion Principles
@@ -284,11 +284,11 @@ export default function MotionPage() {
           {principles.map(({ rule, detail }, i) => (
             <div
               key={i}
-              className="border border-white/[0.06] bg-white/[0.02] px-5 py-4"
+              className="border border-ink/[0.06] bg-ink/[0.02] px-5 py-4"
               style={{ borderRadius: "var(--radius-lg)" }}
             >
-              <h3 className="text-[13px] font-medium text-white/70">{rule}</h3>
-              <p className="text-[12px] text-white/35 mt-1 leading-relaxed">{detail}</p>
+              <h3 className="text-[13px] font-medium text-ink/70">{rule}</h3>
+              <p className="text-[12px] text-ink/35 mt-1 leading-relaxed">{detail}</p>
             </div>
           ))}
         </div>

@@ -46,15 +46,15 @@ function SidebarContent({
       {/* Logo */}
       <div className="px-5 pt-6 pb-5">
         {isCollapsed ? (
-          <span className="block text-center text-[13px] font-medium tracking-wide text-white/50 uppercase">
+          <span className="block text-center text-[13px] font-medium tracking-wide text-ink/50 uppercase">
             DS
           </span>
         ) : (
           <>
-            <span className="block text-[13px] font-medium tracking-wide text-white/50 uppercase">
+            <span className="block text-[13px] font-medium tracking-wide text-ink/50 uppercase">
               Design System
             </span>
-            <span className="block mt-0.5 text-[11px] text-white/30">v0.1.0</span>
+            <span className="block mt-0.5 text-[11px] text-ink/30">v0.1.0</span>
           </>
         )}
       </div>
@@ -73,10 +73,10 @@ function SidebarContent({
               className={`
                 flex items-center ${isCollapsed ? "justify-center" : "gap-3"} px-3 py-2 text-[13px]
                 transition-[background-color,color] duration-200
-                focus-visible:ring-2 focus-visible:ring-white/20 focus-visible:outline-none
+                focus-visible:ring-2 focus-visible:ring-ink/20 focus-visible:outline-none
                 ${isActive
-                  ? "bg-white/[0.08] text-white"
-                  : "text-white/50 hover:bg-white/[0.04] hover:text-white/80"
+                  ? "bg-ink/[0.08] text-ink"
+                  : "text-ink/50 hover:bg-ink/[0.04] hover:text-ink/80"
                 }
               `}
               style={{
@@ -112,6 +112,7 @@ export function Sidebar({ isOpen = false, onClose, isCollapsed = false, onToggle
           WebkitBackdropFilter: "blur(var(--glass-blur)) saturate(var(--glass-saturate))",
           borderRadius: "0 var(--radius-lg) var(--radius-lg) 0",
           boxShadow: "var(--shadow-panel)",
+          border: "1px solid var(--surface-glass-border)",
           transition: "width 300ms var(--ease-panel)",
         }}
       >
@@ -133,7 +134,7 @@ export function Sidebar({ isOpen = false, onClose, isCollapsed = false, onToggle
             style={{ transitionTimingFunction: "var(--ease-spring)" }}
             aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
           >
-            <div className="w-[3px] h-7 rounded-full bg-white/30 transition-colors duration-150 hover:bg-white/60" />
+            <div className="w-[3px] h-7 rounded-full bg-ink/30 transition-colors duration-150 hover:bg-ink/60" />
           </button>
         )}
       </aside>
@@ -143,7 +144,7 @@ export function Sidebar({ isOpen = false, onClose, isCollapsed = false, onToggle
         <SheetContent
           side="left"
           showCloseButton
-          className="w-[260px] border-r border-white/[0.06] p-0 sm:max-w-[260px]"
+          className="w-[260px] border-r border-ink/[0.06] p-0 sm:max-w-[260px]"
           style={{
             background: "var(--surface-glass)",
             backdropFilter: "blur(var(--glass-blur)) saturate(var(--glass-saturate))",

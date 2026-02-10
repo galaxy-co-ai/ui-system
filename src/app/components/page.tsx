@@ -46,13 +46,13 @@ export default function ComponentsPage() {
     <section className="mx-auto max-w-3xl px-8 pb-32 pt-20">
       {/* Section header */}
       <span
-        className="text-[11px] uppercase tracking-[0.2em] text-white/30"
+        className="text-[11px] uppercase tracking-[0.2em] text-ink/30"
         style={{ fontFamily: "var(--font-code)" }}
       >
         Component Library
       </span>
       <h1
-        className="mt-2 text-[clamp(28px,4vw,48px)] font-bold leading-[1.1] tracking-[-0.02em] text-white"
+        className="mt-2 text-[clamp(28px,4vw,48px)] font-bold leading-[1.1] tracking-[-0.02em] text-ink"
         style={{ fontFamily: "var(--font-display)" }}
       >
         Components
@@ -70,12 +70,12 @@ export default function ComponentsPage() {
         {components.map(({ name, description, variants }) => (
           <div
             key={name}
-            className="flex items-center gap-4 border border-white/[0.06] bg-white/[0.02] px-5 py-4"
+            className="flex items-center gap-4 border border-ink/[0.06] bg-ink/[0.02] px-5 py-4"
             style={{ borderRadius: "var(--radius-lg)" }}
           >
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2.5">
-                <h2 className="text-[14px] font-medium text-white">{name}</h2>
+                <h2 className="text-[14px] font-medium text-ink">{name}</h2>
                 <Badge
                   variant="outline"
                   className="border-emerald-500/20 bg-emerald-500/10 text-[10px] font-medium text-emerald-400"
@@ -84,12 +84,12 @@ export default function ComponentsPage() {
                   Live
                 </Badge>
               </div>
-              <p className="mt-1 text-[13px] text-white/40 line-clamp-1">
+              <p className="mt-1 text-[13px] text-ink/40 line-clamp-1">
                 {description}
               </p>
             </div>
             <span
-              className="shrink-0 text-[12px] text-white/25"
+              className="shrink-0 text-[12px] text-ink/25"
               style={{ fontFamily: "var(--font-code)" }}
             >
               {variants} variant{variants !== 1 ? "s" : ""}

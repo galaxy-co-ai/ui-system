@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { EB_Garamond, DM_Sans, JetBrains_Mono } from "next/font/google";
+import { ThemeProvider } from "next-themes";
 import { AppShell } from "@/components/app-shell";
 
 import "./globals.css";
@@ -33,11 +34,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${ebGaramond.variable} ${dmSans.variable} ${jetbrainsMono.variable} antialiased`}
       >
-        <AppShell>{children}</AppShell>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <AppShell>{children}</AppShell>
+        </ThemeProvider>
       </body>
     </html>
   );

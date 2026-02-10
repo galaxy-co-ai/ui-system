@@ -49,15 +49,15 @@ const neutralPalette = [
 function TokensSection() {
   return (
     <section className="px-6 py-5">
-      <h3 className="mb-4 text-[11px] font-semibold uppercase tracking-wider text-white/40">
+      <h3 className="mb-4 text-[11px] font-semibold uppercase tracking-wider text-ink/40">
         Design Tokens
       </h3>
       <div className="space-y-3">
         {tokens.map(({ label, value }) => (
           <div key={label}>
-            <span className="block text-[11px] text-white/30">{label}</span>
+            <span className="block text-[11px] text-ink/30">{label}</span>
             <span
-              className="mt-0.5 block text-[13px] text-white/70"
+              className="mt-0.5 block text-[13px] text-ink/70"
               style={{ fontFamily: "var(--font-code)" }}
             >
               {value}
@@ -72,21 +72,21 @@ function TokensSection() {
 function PaletteSection() {
   return (
     <section className="px-6 py-5">
-      <h3 className="mb-4 text-[11px] font-semibold uppercase tracking-wider text-white/40">
+      <h3 className="mb-4 text-[11px] font-semibold uppercase tracking-wider text-ink/40">
         Neutral Palette
       </h3>
       <div className="grid grid-cols-5 gap-2">
         {neutralPalette.map(({ step, hex }) => (
           <div key={step} className="flex flex-col items-center gap-1.5">
             <div
-              className="h-10 w-full border border-white/[0.06]"
+              className="h-10 w-full border border-ink/[0.06]"
               style={{
                 backgroundColor: hex,
                 borderRadius: "var(--radius-xs)",
               }}
             />
             <span
-              className="text-[10px] text-white/30"
+              className="text-[10px] text-ink/30"
               style={{ fontFamily: "var(--font-code)" }}
             >
               {step}
@@ -101,12 +101,12 @@ function PaletteSection() {
 function EasingVisualizer() {
   return (
     <section className="px-6 py-5">
-      <h3 className="mb-4 text-[11px] font-semibold uppercase tracking-wider text-white/40">
+      <h3 className="mb-4 text-[11px] font-semibold uppercase tracking-wider text-ink/40">
         Spring Easing
       </h3>
 
       <div
-        className="border border-white/[0.06] bg-white/[0.02] p-4"
+        className="border border-ink/[0.06] bg-ink/[0.02] p-4"
         style={{ borderRadius: "var(--radius-lg)" }}
       >
         {/* Curve */}
@@ -118,49 +118,49 @@ function EasingVisualizer() {
           {/* Grid */}
           <line
             x1="0" y1="200" x2="200" y2="200"
-            stroke="rgba(255,255,255,0.08)"
+            stroke="rgba(var(--ink-rgb),0.08)"
           />
           <line
             x1="0" y1="0" x2="0" y2="200"
-            stroke="rgba(255,255,255,0.08)"
+            stroke="rgba(var(--ink-rgb),0.08)"
           />
           <line
             x1="0" y1="100" x2="200" y2="100"
-            stroke="rgba(255,255,255,0.04)"
+            stroke="rgba(var(--ink-rgb),0.04)"
             strokeDasharray="4 4"
           />
           <line
             x1="100" y1="0" x2="100" y2="200"
-            stroke="rgba(255,255,255,0.04)"
+            stroke="rgba(var(--ink-rgb),0.04)"
             strokeDasharray="4 4"
           />
 
           {/* Control-point handles */}
           <line
             x1="0" y1="200" x2="44" y2="0"
-            stroke="rgba(255,255,255,0.12)"
+            stroke="rgba(var(--ink-rgb),0.12)"
             strokeDasharray="3 3"
           />
           <line
             x1="200" y1="0" x2="72" y2="0"
-            stroke="rgba(255,255,255,0.12)"
+            stroke="rgba(var(--ink-rgb),0.12)"
             strokeDasharray="3 3"
           />
 
           {/* Bezier curve */}
           <path
             d="M 0 200 C 44 0, 72 0, 200 0"
-            stroke="rgba(255,255,255,0.6)"
+            stroke="rgba(var(--ink-rgb),0.6)"
             strokeWidth="2"
             strokeLinecap="round"
           />
 
           {/* Control points */}
-          <circle cx="44" cy="0" r="3.5" fill="rgba(255,255,255,0.25)" />
-          <circle cx="72" cy="0" r="3.5" fill="rgba(255,255,255,0.25)" />
+          <circle cx="44" cy="0" r="3.5" fill="rgba(var(--ink-rgb),0.25)" />
+          <circle cx="72" cy="0" r="3.5" fill="rgba(var(--ink-rgb),0.25)" />
 
           {/* Animated dot */}
-          <circle r="4" fill="rgba(255,255,255,0.85)">
+          <circle r="4" fill="rgba(var(--ink-rgb),0.85)">
             <animateMotion
               dur="2s"
               repeatCount="indefinite"
@@ -175,7 +175,7 @@ function EasingVisualizer() {
           <text
             x="100" y="218"
             textAnchor="middle"
-            fill="rgba(255,255,255,0.2)"
+            fill="rgba(var(--ink-rgb),0.2)"
             fontSize="10"
           >
             time
@@ -183,7 +183,7 @@ function EasingVisualizer() {
           <text
             x="-8" y="104"
             textAnchor="middle"
-            fill="rgba(255,255,255,0.2)"
+            fill="rgba(var(--ink-rgb),0.2)"
             fontSize="10"
             transform="rotate(-90 -8 104)"
           >
@@ -192,9 +192,9 @@ function EasingVisualizer() {
         </svg>
 
         {/* Motion preview track */}
-        <div className="mt-4 overflow-hidden rounded-full bg-white/[0.04] p-0.5">
+        <div className="mt-4 overflow-hidden rounded-full bg-ink/[0.04] p-0.5">
           <motion.div
-            className="h-1.5 w-3 rounded-full bg-white/60"
+            className="h-1.5 w-3 rounded-full bg-ink/60"
             animate={{ x: [0, 280] }}
             transition={{
               duration: 1.5,
@@ -207,7 +207,7 @@ function EasingVisualizer() {
         </div>
 
         <p
-          className="mt-3 text-center text-[11px] text-white/25"
+          className="mt-3 text-center text-[11px] text-ink/25"
           style={{ fontFamily: "var(--font-code)" }}
         >
           cubic-bezier(0.22, 1, 0.36, 1)
@@ -262,24 +262,25 @@ export function RightDrawer({ isOpen, onClose }: RightDrawerProps) {
             WebkitBackdropFilter: "blur(var(--glass-blur)) saturate(var(--glass-saturate))",
             borderRadius: "var(--radius-lg) 0 0 var(--radius-lg)",
             boxShadow: "var(--shadow-panel)",
+            border: "1px solid var(--surface-glass-border)",
           }}
           initial={{ x: 380 }}
           animate={{ x: 0, transition: motionIn }}
           exit={{ x: 380, transition: motionOut }}
         >
           {/* Header */}
-          <div className="flex items-center justify-between border-b border-white/[0.06] px-6 py-5">
+          <div className="flex items-center justify-between border-b border-ink/[0.06] px-6 py-5">
             <div>
-              <h2 className="text-[15px] font-medium text-white">
+              <h2 className="text-[15px] font-medium text-ink">
                 Inspector
               </h2>
-              <p className="mt-0.5 text-[12px] text-white/40">
+              <p className="mt-0.5 text-[12px] text-ink/40">
                 Component Details
               </p>
             </div>
             <button
               onClick={onClose}
-              className="flex h-7 w-7 items-center justify-center text-white/40 transition-[background-color,color] duration-150 hover:bg-white/[0.06] hover:text-white/60 focus-visible:ring-2 focus-visible:ring-white/20 focus-visible:outline-none"
+              className="flex h-7 w-7 items-center justify-center text-ink/40 transition-[background-color,color] duration-150 hover:bg-ink/[0.06] hover:text-ink/60 focus-visible:ring-2 focus-visible:ring-ink/20 focus-visible:outline-none"
               style={{
                 borderRadius: "var(--radius-xs)",
                 transitionTimingFunction: "var(--ease-spring)",
@@ -292,9 +293,9 @@ export function RightDrawer({ isOpen, onClose }: RightDrawerProps) {
 
           <div className="overflow-y-auto" style={{ maxHeight: "calc(100% - 70px)" }}>
             <TokensSection />
-            <div className="mx-6 h-px bg-white/[0.06]" />
+            <div className="mx-6 h-px bg-ink/[0.06]" />
             <PaletteSection />
-            <div className="mx-6 h-px bg-white/[0.06]" />
+            <div className="mx-6 h-px bg-ink/[0.06]" />
             <EasingVisualizer />
             <div className="h-6" />
           </div>

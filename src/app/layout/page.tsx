@@ -28,11 +28,11 @@ const spacingPatterns = [
 ];
 
 const borderPatterns = [
-  { pattern: "border-white/[0.06]", usage: "Default container border — barely visible" },
-  { pattern: "border-white/[0.08]", usage: "Hover state or emphasized border" },
-  { pattern: "bg-white/[0.02]", usage: "Subtle surface tint for containers" },
-  { pattern: "bg-white/[0.04]", usage: "Hover background for interactive items" },
-  { pattern: "bg-white/[0.08]", usage: "Active/selected item background" },
+  { pattern: "border-ink/[0.06]", usage: "Default container border — barely visible" },
+  { pattern: "border-ink/[0.08]", usage: "Hover state or emphasized border" },
+  { pattern: "bg-ink/[0.02]", usage: "Subtle surface tint for containers" },
+  { pattern: "bg-ink/[0.04]", usage: "Hover background for interactive items" },
+  { pattern: "bg-ink/[0.08]", usage: "Active/selected item background" },
 ];
 
 export default function LayoutPage() {
@@ -40,13 +40,13 @@ export default function LayoutPage() {
     <section className="mx-auto max-w-3xl px-8 pb-32 pt-20">
       {/* Page header */}
       <span
-        className="text-[11px] uppercase tracking-[0.2em] text-white/30"
+        className="text-[11px] uppercase tracking-[0.2em] text-ink/30"
         style={{ fontFamily: "var(--font-code)" }}
       >
         Design Tokens
       </span>
       <h1
-        className="mt-2 text-[clamp(28px,4vw,48px)] font-bold leading-[1.1] tracking-[-0.02em] text-white"
+        className="mt-2 text-[clamp(28px,4vw,48px)] font-bold leading-[1.1] tracking-[-0.02em] text-ink"
         style={{ fontFamily: "var(--font-display)" }}
       >
         Layout
@@ -62,13 +62,13 @@ export default function LayoutPage() {
       <div className="mt-16">
         <div className="mb-8">
           <span
-            className="text-[11px] uppercase tracking-[0.2em] text-white/30"
+            className="text-[11px] uppercase tracking-[0.2em] text-ink/30"
             style={{ fontFamily: "var(--font-code)" }}
           >
             Radius
           </span>
           <h2
-            className="mt-2 text-[clamp(20px,3vw,32px)] font-bold leading-[1.1] tracking-[-0.01em] text-white"
+            className="mt-2 text-[clamp(20px,3vw,32px)] font-bold leading-[1.1] tracking-[-0.01em] text-ink"
             style={{ fontFamily: "var(--font-display)" }}
           >
             Border Radius Scale
@@ -78,27 +78,27 @@ export default function LayoutPage() {
           {radiusScale.map(({ name, value, variable, usage }) => (
             <div
               key={name}
-              className="border border-white/[0.06] bg-white/[0.02] p-4"
+              className="border border-ink/[0.06] bg-ink/[0.02] p-4"
               style={{ borderRadius: "var(--radius-lg)" }}
             >
               {/* Visual */}
               <div
-                className="h-14 w-full bg-white/[0.08] border border-white/[0.06] mb-3"
+                className="h-14 w-full bg-ink/[0.08] border border-ink/[0.06] mb-3"
                 style={{ borderRadius: value }}
               />
               <span
-                className="text-[12px] text-white/70 block"
+                className="text-[12px] text-ink/70 block"
                 style={{ fontFamily: "var(--font-code)" }}
               >
                 {variable}
               </span>
               <span
-                className="text-[10px] text-white/30 block mt-0.5"
+                className="text-[10px] text-ink/30 block mt-0.5"
                 style={{ fontFamily: "var(--font-code)" }}
               >
                 {value}
               </span>
-              <p className="text-[10px] text-white/25 mt-1">{usage}</p>
+              <p className="text-[10px] text-ink/25 mt-1">{usage}</p>
             </div>
           ))}
         </div>
@@ -108,13 +108,13 @@ export default function LayoutPage() {
       <div className="mt-16">
         <div className="mb-8">
           <span
-            className="text-[11px] uppercase tracking-[0.2em] text-white/30"
+            className="text-[11px] uppercase tracking-[0.2em] text-ink/30"
             style={{ fontFamily: "var(--font-code)" }}
           >
             Dimensions
           </span>
           <h2
-            className="mt-2 text-[clamp(20px,3vw,32px)] font-bold leading-[1.1] tracking-[-0.01em] text-white"
+            className="mt-2 text-[clamp(20px,3vw,32px)] font-bold leading-[1.1] tracking-[-0.01em] text-ink"
             style={{ fontFamily: "var(--font-display)" }}
           >
             Panel Sizes
@@ -124,20 +124,20 @@ export default function LayoutPage() {
           {panelDimensions.map(({ label, variable, value }) => (
             <div
               key={label}
-              className="flex items-center justify-between border border-white/[0.06] bg-white/[0.02] px-5 py-3"
+              className="flex items-center justify-between border border-ink/[0.06] bg-ink/[0.02] px-5 py-3"
               style={{ borderRadius: "var(--radius-lg)" }}
             >
               <div>
-                <span className="text-[13px] text-white/60">{label}</span>
+                <span className="text-[13px] text-ink/60">{label}</span>
                 <span
-                  className="block text-[11px] text-white/25 mt-0.5"
+                  className="block text-[11px] text-ink/25 mt-0.5"
                   style={{ fontFamily: "var(--font-code)" }}
                 >
                   {variable}
                 </span>
               </div>
               <span
-                className="text-[13px] text-white/50 font-medium"
+                className="text-[13px] text-ink/50 font-medium"
                 style={{ fontFamily: "var(--font-code)", fontVariantNumeric: "tabular-nums" }}
               >
                 {value}
@@ -151,13 +151,13 @@ export default function LayoutPage() {
       <div className="mt-16">
         <div className="mb-8">
           <span
-            className="text-[11px] uppercase tracking-[0.2em] text-white/30"
+            className="text-[11px] uppercase tracking-[0.2em] text-ink/30"
             style={{ fontFamily: "var(--font-code)" }}
           >
             Spacing
           </span>
           <h2
-            className="mt-2 text-[clamp(20px,3vw,32px)] font-bold leading-[1.1] tracking-[-0.01em] text-white"
+            className="mt-2 text-[clamp(20px,3vw,32px)] font-bold leading-[1.1] tracking-[-0.01em] text-ink"
             style={{ fontFamily: "var(--font-display)" }}
           >
             Common Patterns
@@ -167,19 +167,19 @@ export default function LayoutPage() {
           {spacingPatterns.map(({ context, value, note }) => (
             <div
               key={context}
-              className="border border-white/[0.06] bg-white/[0.02] px-5 py-3"
+              className="border border-ink/[0.06] bg-ink/[0.02] px-5 py-3"
               style={{ borderRadius: "var(--radius-lg)" }}
             >
               <div className="flex items-start justify-between gap-4">
-                <span className="text-[13px] text-white/60">{context}</span>
+                <span className="text-[13px] text-ink/60">{context}</span>
                 <span
-                  className="text-[12px] text-white/40 shrink-0"
+                  className="text-[12px] text-ink/40 shrink-0"
                   style={{ fontFamily: "var(--font-code)" }}
                 >
                   {value}
                 </span>
               </div>
-              <p className="text-[11px] text-white/25 mt-1">{note}</p>
+              <p className="text-[11px] text-ink/25 mt-1">{note}</p>
             </div>
           ))}
         </div>
@@ -189,13 +189,13 @@ export default function LayoutPage() {
       <div className="mt-16">
         <div className="mb-8">
           <span
-            className="text-[11px] uppercase tracking-[0.2em] text-white/30"
+            className="text-[11px] uppercase tracking-[0.2em] text-ink/30"
             style={{ fontFamily: "var(--font-code)" }}
           >
             Surfaces
           </span>
           <h2
-            className="mt-2 text-[clamp(20px,3vw,32px)] font-bold leading-[1.1] tracking-[-0.01em] text-white"
+            className="mt-2 text-[clamp(20px,3vw,32px)] font-bold leading-[1.1] tracking-[-0.01em] text-ink"
             style={{ fontFamily: "var(--font-display)" }}
           >
             Border & Surface Alpha
@@ -205,16 +205,16 @@ export default function LayoutPage() {
           {borderPatterns.map(({ pattern, usage }) => (
             <div
               key={pattern}
-              className="flex items-center gap-4 border border-white/[0.06] bg-white/[0.02] px-5 py-3"
+              className="flex items-center gap-4 border border-ink/[0.06] bg-ink/[0.02] px-5 py-3"
               style={{ borderRadius: "var(--radius-lg)" }}
             >
               <span
-                className="text-[12px] text-white/60 w-44 shrink-0"
+                className="text-[12px] text-ink/60 w-44 shrink-0"
                 style={{ fontFamily: "var(--font-code)" }}
               >
                 {pattern}
               </span>
-              <span className="text-[12px] text-white/35">{usage}</span>
+              <span className="text-[12px] text-ink/35">{usage}</span>
             </div>
           ))}
         </div>

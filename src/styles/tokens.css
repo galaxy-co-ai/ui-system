@@ -5,6 +5,7 @@
 /* ------------------------------------------------
    Neutral Palette
    10 steps: warm-shifted darks → pure neutral lights
+   Mode-independent — used by both themes
    ------------------------------------------------ */
 :root {
   --neutral-1: #0f0e0d;
@@ -20,13 +21,55 @@
 }
 
 /* ------------------------------------------------
-   Surfaces & Overlays
+   Ink Token
+   Single adaptive foreground — flips per mode.
+   Tailwind: text-ink/50, bg-ink/8, border-ink/6
+   Inline:   rgba(var(--ink-rgb), 0.08)
    ------------------------------------------------ */
 :root {
-  --surface-glass: rgba(17, 17, 17, 0.85);
-  --overlay-dark: rgba(0, 0, 0, 0.5);
+  --ink: #0f0e0d;
+  --ink-rgb: 15, 14, 13;
+  --body-bg: #fafaf8;
+}
+.dark {
+  --ink: #ffffff;
+  --ink-rgb: 255, 255, 255;
+  --body-bg: var(--neutral-1);
+}
+
+/* ------------------------------------------------
+   CTA Token
+   Primary action buttons flip between modes
+   ------------------------------------------------ */
+:root {
+  --cta-bg: var(--neutral-1);
+  --cta-text: #ffffff;
+}
+.dark {
+  --cta-bg: #ffffff;
+  --cta-text: var(--neutral-1);
+}
+
+/* ------------------------------------------------
+   Surfaces & Overlays
+   Light: warm whites, visible shadows for depth
+   Dark: dark glass, inset highlights for edge
+   ------------------------------------------------ */
+:root {
+  --surface-glass: rgba(255, 255, 255, 0.82);
+  --surface-glass-border: rgba(0, 0, 0, 0.08);
+  --overlay-dark: rgba(0, 0, 0, 0.3);
   --glass-blur: 20px;
   --glass-saturate: 180%;
+  --glass-surface-alpha: 0.82;
+  --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.06),
+    0 1px 0 rgba(0, 0, 0, 0.04);
+  --shadow-active: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+.dark {
+  --surface-glass: rgba(17, 17, 17, 0.85);
+  --surface-glass-border: rgba(255, 255, 255, 0.06);
+  --overlay-dark: rgba(0, 0, 0, 0.5);
   --glass-surface-alpha: 0.85;
   --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.4),
     inset 0 1px 0 rgba(255, 255, 255, 0.06);
@@ -37,6 +80,11 @@
    Semantic Text Colors
    ------------------------------------------------ */
 :root {
+  --text-primary: #1a1918;
+  --text-secondary: var(--neutral-6);
+  --text-tertiary: var(--neutral-7);
+}
+.dark {
   --text-primary: #e8e8e8;
   --text-secondary: var(--neutral-7);
   --text-tertiary: var(--neutral-6);
@@ -58,10 +106,13 @@
    Panel Layout
    ------------------------------------------------ */
 :root {
-  --shadow-panel: 0 4px 24px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.08);
+  --shadow-panel: 0 4px 24px rgba(0, 0, 0, 0.06), 0 1px 4px rgba(0, 0, 0, 0.04);
   --panel-inset: 10px;
   --sidebar-width: 220px;
   --sidebar-collapsed-width: 60px;
+}
+.dark {
+  --shadow-panel: 0 4px 24px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.08);
 }
 
 /* ------------------------------------------------
@@ -90,7 +141,7 @@
    Base
    ------------------------------------------------ */
 body {
-  background-color: var(--neutral-1);
+  background-color: var(--body-bg);
   color: var(--text-primary);
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;

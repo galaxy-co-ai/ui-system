@@ -20,7 +20,7 @@ import { Badge } from "@/components/ui/badge";
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
     <h3
-      className="text-[11px] font-semibold uppercase tracking-[0.15em] text-white/30"
+      className="text-[11px] font-semibold uppercase tracking-[0.15em] text-ink/30"
       style={{ fontFamily: "var(--font-code)" }}
     >
       {children}
@@ -31,7 +31,7 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 function VariantLabel({ children }: { children: React.ReactNode }) {
   return (
     <span
-      className="text-[10px] text-white/20"
+      className="text-[10px] text-ink/20"
       style={{ fontFamily: "var(--font-code)" }}
     >
       {children}
@@ -52,7 +52,7 @@ function ButtonsShowcase() {
       <div className="mt-4 flex flex-wrap items-end gap-3">
         <div className="flex flex-col items-center gap-2">
           <Button
-            className="bg-white text-[var(--neutral-1)] hover:bg-white/90 active:scale-[0.97]"
+            className="bg-cta text-cta-foreground hover:bg-cta/90 active:scale-[0.97]"
             style={{
               borderRadius: "var(--radius-md)",
               transitionTimingFunction: "var(--ease-spring)",
@@ -98,7 +98,7 @@ function ButtonsShowcase() {
           <div className="flex flex-col items-center gap-2">
             <Button
               size="sm"
-              className="bg-white text-[var(--neutral-1)] hover:bg-white/90 active:scale-[0.97]"
+              className="bg-cta text-cta-foreground hover:bg-cta/90 active:scale-[0.97]"
               style={{
                 borderRadius: "var(--radius-sm)",
                 transitionTimingFunction: "var(--ease-spring)",
@@ -163,10 +163,10 @@ function SwitchesShowcase() {
         ].map(({ label, checked, onChange }) => (
           <div
             key={label}
-            className="flex items-center justify-between border border-white/[0.06] bg-white/[0.02] px-4 py-3"
+            className="flex items-center justify-between border border-ink/[0.06] bg-ink/[0.02] px-4 py-3"
             style={{ borderRadius: "var(--radius-md)" }}
           >
-            <span className="text-[13px] text-white/70">{label}</span>
+            <span className="text-[13px] text-ink/70">{label}</span>
             <Switch checked={checked} onCheckedChange={onChange} />
           </div>
         ))}
@@ -206,14 +206,14 @@ function TabsShowcase() {
           <VariantLabel>pill</VariantLabel>
           <Tabs defaultValue="design" className="mt-2">
             <TabsList
-              className="h-auto border border-white/[0.06] bg-white/[0.03] p-1"
+              className="h-auto border border-ink/[0.06] bg-ink/[0.03] p-1"
               style={{ borderRadius: "var(--radius-lg)" }}
             >
               {["Design", "Code", "Preview"].map((tab) => (
                 <TabsTrigger
                   key={tab}
                   value={tab.toLowerCase()}
-                  className="text-[12px] text-white/40 transition-[background-color,color] duration-200 data-[state=active]:bg-white/[0.1] data-[state=active]:text-white data-[state=active]:shadow-sm"
+                  className="text-[12px] text-ink/40 transition-[background-color,color] duration-200 data-[state=active]:bg-ink/[0.1] data-[state=active]:text-ink data-[state=active]:shadow-sm"
                   style={{
                     borderRadius: "var(--radius-sm)",
                     transitionTimingFunction: "var(--ease-spring)",
@@ -224,17 +224,17 @@ function TabsShowcase() {
               ))}
             </TabsList>
             <TabsContent value="design" className="mt-3">
-              <p className="text-[13px] text-white/30">
+              <p className="text-[13px] text-ink/30">
                 Design tokens and visual properties
               </p>
             </TabsContent>
             <TabsContent value="code" className="mt-3">
-              <p className="text-[13px] text-white/30">
+              <p className="text-[13px] text-ink/30">
                 Implementation and code examples
               </p>
             </TabsContent>
             <TabsContent value="preview" className="mt-3">
-              <p className="text-[13px] text-white/30">
+              <p className="text-[13px] text-ink/30">
                 Live component preview
               </p>
             </TabsContent>
@@ -245,12 +245,12 @@ function TabsShowcase() {
         <div>
           <VariantLabel>underline</VariantLabel>
           <Tabs defaultValue="overview" className="mt-2">
-            <TabsList className="h-auto w-full justify-start gap-0 rounded-none border-b border-white/[0.06] bg-transparent p-0">
+            <TabsList className="h-auto w-full justify-start gap-0 rounded-none border-b border-ink/[0.06] bg-transparent p-0">
               {["Overview", "Props", "Examples"].map((tab) => (
                 <TabsTrigger
                   key={tab}
                   value={tab.toLowerCase()}
-                  className="rounded-none border-b-2 border-transparent px-4 pb-2.5 pt-2 text-[12px] text-white/40 shadow-none transition-[border-color,color] duration-200 data-[state=active]:border-white/60 data-[state=active]:bg-transparent data-[state=active]:text-white data-[state=active]:shadow-none"
+                  className="rounded-none border-b-2 border-transparent px-4 pb-2.5 pt-2 text-[12px] text-ink/40 shadow-none transition-[border-color,color] duration-200 data-[state=active]:border-ink/60 data-[state=active]:bg-transparent data-[state=active]:text-ink data-[state=active]:shadow-none"
                   style={{ transitionTimingFunction: "var(--ease-spring)" }}
                 >
                   {tab}
@@ -258,17 +258,17 @@ function TabsShowcase() {
               ))}
             </TabsList>
             <TabsContent value="overview" className="mt-3">
-              <p className="text-[13px] text-white/30">
+              <p className="text-[13px] text-ink/30">
                 Component overview and usage
               </p>
             </TabsContent>
             <TabsContent value="props" className="mt-3">
-              <p className="text-[13px] text-white/30">
+              <p className="text-[13px] text-ink/30">
                 Available props and configuration
               </p>
             </TabsContent>
             <TabsContent value="examples" className="mt-3">
-              <p className="text-[13px] text-white/30">
+              <p className="text-[13px] text-ink/30">
                 Usage examples and patterns
               </p>
             </TabsContent>
@@ -293,7 +293,7 @@ function InputsShowcase() {
           <VariantLabel>plain</VariantLabel>
           <Input
             placeholder="Enter value..."
-            className="mt-2 border-white/[0.08] bg-white/[0.03] text-[13px] text-white placeholder:text-white/25 focus-visible:ring-white/20"
+            className="mt-2 border-ink/[0.08] bg-ink/[0.03] text-[13px] text-ink placeholder:text-ink/25 focus-visible:ring-ink/20"
             style={{ borderRadius: "var(--radius-md)" }}
           />
         </div>
@@ -304,11 +304,11 @@ function InputsShowcase() {
             <Search
               size={15}
               strokeWidth={1.5}
-              className="absolute left-3 top-1/2 -translate-y-1/2 text-white/25"
+              className="absolute left-3 top-1/2 -translate-y-1/2 text-ink/25"
             />
             <Input
               placeholder="Search components..."
-              className="border-white/[0.08] bg-white/[0.03] pl-9 text-[13px] text-white placeholder:text-white/25 focus-visible:ring-white/20"
+              className="border-ink/[0.08] bg-ink/[0.03] pl-9 text-[13px] text-ink placeholder:text-ink/25 focus-visible:ring-ink/20"
               style={{ borderRadius: "var(--radius-md)" }}
             />
           </div>
@@ -325,7 +325,7 @@ function InputsShowcase() {
 function BadgesShowcase() {
   const badges = [
     { label: "Live", className: "border-emerald-500/20 bg-emerald-500/10 text-emerald-400" },
-    { label: "Draft", className: "border-white/[0.08] bg-white/[0.05] text-white/50" },
+    { label: "Draft", className: "border-ink/[0.08] bg-ink/[0.05] text-ink/50" },
     { label: "Deprecated", className: "border-red-500/20 bg-red-500/10 text-red-400" },
     { label: "Beta", className: "border-purple-500/20 bg-purple-500/10 text-purple-400" },
     { label: "New", className: "border-yellow-500/20 bg-yellow-500/10 text-yellow-400" },
@@ -373,14 +373,14 @@ export function InteractiveControls() {
       {/* Tabbed showcase */}
       <Tabs defaultValue="buttons">
         <TabsList
-          className="h-auto border border-white/[0.06] bg-white/[0.03] p-1"
+          className="h-auto border border-ink/[0.06] bg-ink/[0.03] p-1"
           style={{ borderRadius: "var(--radius-lg)" }}
         >
           {showcaseTabs.map(({ value, label }) => (
             <TabsTrigger
               key={value}
               value={value}
-              className="text-[12px] text-white/40 transition-[background-color,color] duration-200 data-[state=active]:bg-white/[0.1] data-[state=active]:text-white data-[state=active]:shadow-sm"
+              className="text-[12px] text-ink/40 transition-[background-color,color] duration-200 data-[state=active]:bg-ink/[0.1] data-[state=active]:text-ink data-[state=active]:shadow-sm"
               style={{
                 borderRadius: "var(--radius-sm)",
                 transitionTimingFunction: "var(--ease-spring)",
