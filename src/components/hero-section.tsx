@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface HeroSectionProps {
@@ -9,10 +8,6 @@ interface HeroSectionProps {
 }
 
 export function HeroSection({ onOpenDrawer }: HeroSectionProps) {
-  const scrollToShowcase = () => {
-    document.getElementById("showcase")?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-8">
       {/* ---- Background layers ---- */}
@@ -94,25 +89,6 @@ export function HeroSection({ onOpenDrawer }: HeroSectionProps) {
         </div>
       </div>
 
-      {/* ---- Scroll indicator ---- */}
-      <button
-        onClick={scrollToShowcase}
-        className="absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2 text-ink/20 transition-colors duration-300 hover:text-ink/40 focus-visible:ring-2 focus-visible:ring-ink/20 focus-visible:outline-none"
-        style={{ borderRadius: "var(--radius-sm)" }}
-        aria-label="Scroll to component showcase"
-      >
-        <span
-          className="text-[10px] uppercase tracking-[0.2em]"
-          style={{ fontFamily: "var(--font-code)" }}
-        >
-          Explore
-        </span>
-        <ChevronDown
-          size={16}
-          strokeWidth={1.5}
-          className="animate-[float_2s_ease-in-out_infinite]"
-        />
-      </button>
     </section>
   );
 }
