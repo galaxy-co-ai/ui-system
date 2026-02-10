@@ -1,0 +1,98 @@
+/* ================================================
+   UI System — Design Tokens
+   ================================================ */
+
+/* ------------------------------------------------
+   Neutral Palette
+   10 steps: warm-shifted darks → pure neutral lights
+   ------------------------------------------------ */
+:root {
+  --neutral-1: #0f0e0d;
+  --neutral-2: #1a1918;
+  --neutral-3: #262524;
+  --neutral-4: #333231;
+  --neutral-5: #444342;
+  --neutral-6: #6b6b6b;
+  --neutral-7: #8a8a8a;
+  --neutral-8: #b3b3b3;
+  --neutral-9: #d9d9d9;
+  --neutral-10: #ffffff;
+}
+
+/* ------------------------------------------------
+   Surfaces & Overlays
+   ------------------------------------------------ */
+:root {
+  --surface-glass: rgba(17, 17, 17, 0.85);
+  --overlay-dark: rgba(0, 0, 0, 0.5);
+  --glass-blur: 20px;
+  --glass-saturate: 180%;
+  --glass-surface-alpha: 0.85;
+  --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  --shadow-active: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* ------------------------------------------------
+   Semantic Text Colors
+   ------------------------------------------------ */
+:root {
+  --text-primary: #e8e8e8;
+  --text-secondary: var(--neutral-7);
+  --text-tertiary: var(--neutral-6);
+}
+
+/* ------------------------------------------------
+   Motion
+   ------------------------------------------------ */
+:root {
+  --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-panel: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-switch: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --duration-enter: 300ms;
+  --duration-exit: 210ms;
+  --duration-hover: 200ms;
+}
+
+/* ------------------------------------------------
+   Panel Layout
+   ------------------------------------------------ */
+:root {
+  --shadow-panel: 0 4px 24px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.08);
+  --panel-inset: 10px;
+  --sidebar-width: 220px;
+  --sidebar-collapsed-width: 60px;
+}
+
+/* ------------------------------------------------
+   Border Radius
+   ------------------------------------------------ */
+:root {
+  --radius-xs: 6px;
+  --radius-sm: 8px;
+  --radius-md: 10px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-pill: 9999px;
+}
+
+/* ------------------------------------------------
+   Typography
+   Fonts loaded via next/font/google in layout.tsx
+   ------------------------------------------------ */
+:root {
+  --font-display: var(--font-eb-garamond), Georgia, 'Times New Roman', serif;
+  --font-body: var(--font-dm-sans), system-ui, -apple-system, sans-serif;
+  --font-code: var(--font-jetbrains-mono), 'Courier New', monospace;
+}
+
+/* ------------------------------------------------
+   Base
+   ------------------------------------------------ */
+body {
+  background-color: var(--neutral-1);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
