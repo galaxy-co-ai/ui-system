@@ -9,7 +9,6 @@ import {
   Type,
   LayoutGrid,
   Sparkles,
-  Settings,
 } from "lucide-react";
 import {
   Sheet,
@@ -94,30 +93,6 @@ function SidebarContent({
         })}
       </nav>
 
-      {/* Settings — pinned to bottom */}
-      <div className="px-3 pb-6">
-        <Link
-          href="/settings"
-          onClick={onNavigate}
-          title={isCollapsed ? "Settings" : undefined}
-          className={`
-            flex items-center ${isCollapsed ? "justify-center" : "gap-3"} px-3 py-2 text-[13px]
-            text-white/50 transition-[background-color,color] duration-200
-            hover:bg-white/[0.04] hover:text-white/80
-            focus-visible:ring-2 focus-visible:ring-white/20 focus-visible:outline-none
-            ${pathname === "/settings" ? "bg-white/[0.08] text-white" : ""}
-          `}
-          style={{
-            borderRadius: "var(--radius-sm)",
-            transitionTimingFunction: "var(--ease-spring)",
-          }}
-        >
-          <Settings size={16} strokeWidth={1.5} className="shrink-0" />
-          {!isCollapsed && (
-            <span className="transition-opacity duration-200">Settings</span>
-          )}
-        </Link>
-      </div>
     </>
   );
 }

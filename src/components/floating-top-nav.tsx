@@ -1,8 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, Search } from "lucide-react";
-import { Separator } from "@/components/ui/separator";
+import { Menu } from "lucide-react";
 
 const navItems = ["System", "Components", "Tokens", "Playground"];
 
@@ -90,21 +89,6 @@ export function FloatingTopNav({ onMenuToggle, sidebarWidth = 220 }: FloatingTop
         );
       })}
 
-      <Separator
-        orientation="vertical"
-        className="mx-1.5 !h-5 !bg-white/10"
-      />
-
-      <button
-        className="flex h-8 w-8 items-center justify-center text-white/50 transition-colors duration-200 hover:text-white/80 focus-visible:ring-2 focus-visible:ring-white/20 focus-visible:outline-none"
-        style={{
-          borderRadius: "var(--radius-sm)",
-          transitionTimingFunction: "var(--ease-spring)",
-        }}
-        aria-label="Search"
-      >
-        <Search size={15} strokeWidth={1.5} />
-      </button>
     </nav>
   );
 }

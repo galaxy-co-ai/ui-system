@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { X } from "lucide-react";
 
 interface RightDrawerProps {
@@ -222,8 +222,18 @@ function EasingVisualizer() {
    ------------------------------------------------ */
 
 export function RightDrawer({ isOpen, onClose }: RightDrawerProps) {
+  const prefersReducedMotion = useReducedMotion();
+  const motionIn = prefersReducedMotion ? { duration: 0 } : springIn;
+  const motionOut = prefersReducedMotion ? { duration: 0 } : springOut;
+
   return (
-    <AnimatePresence>
+    <>
+      {/* Screen reader announcement */}
+      <div aria-live="polite" className="sr-only">
+        {isOpen ? "Inspector drawer opened" : "Inspector drawer closed"}
+      </div>
+
+      <AnimatePresence>
       {isOpen && (
         <motion.div
           key="drawer-overlay"
@@ -254,8 +264,8 @@ export function RightDrawer({ isOpen, onClose }: RightDrawerProps) {
             boxShadow: "var(--shadow-panel)",
           }}
           initial={{ x: 380 }}
-          animate={{ x: 0, transition: springIn }}
-          exit={{ x: 380, transition: springOut }}
+          animate={{ x: 0, transition: motionIn }}
+          exit={{ x: 380, transition: motionOut }}
         >
           {/* Header */}
           <div className="flex items-center justify-between border-b border-white/[0.06] px-6 py-5">
@@ -291,5 +301,6 @@ export function RightDrawer({ isOpen, onClose }: RightDrawerProps) {
         </motion.aside>
       )}
     </AnimatePresence>
+    </>
   );
 }
