@@ -1,3 +1,29 @@
+"use client";
+
+import { motion, useReducedMotion } from "framer-motion";
+
+/* ---------------------------------------------------------------------------
+ * Animation
+ * --------------------------------------------------------------------------- */
+
+const staggerContainer = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.08 } },
+};
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 8 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] as const },
+  },
+};
+
+/* ---------------------------------------------------------------------------
+ * Data
+ * --------------------------------------------------------------------------- */
+
 const fontFamilies = [
   {
     name: "EB Garamond",
@@ -40,32 +66,47 @@ const textStyles = [
   { label: "Caption", size: "10px", lineHeight: "1.4", font: "code", color: "ink/25" },
 ];
 
+/* ---------------------------------------------------------------------------
+ * Page
+ * --------------------------------------------------------------------------- */
+
 export default function TypographyPage() {
+  const prefersReducedMotion = useReducedMotion();
+  const rm = !!prefersReducedMotion;
+  const v = rm ? undefined : fadeUp;
+
   return (
-    <section className="mx-auto max-w-3xl px-8 pb-32 pt-20">
+    <motion.section
+      className="mx-auto max-w-3xl px-8 pb-32 pt-20"
+      variants={rm ? undefined : staggerContainer}
+      initial="hidden"
+      animate="show"
+    >
       {/* Page header */}
-      <span
-        className="text-[11px] uppercase tracking-[0.2em] text-ink/30"
-        style={{ fontFamily: "var(--font-code)" }}
-      >
-        Design Tokens
-      </span>
-      <h1
-        className="mt-2 text-[clamp(28px,4vw,48px)] font-bold leading-[1.1] tracking-[-0.02em] text-ink"
-        style={{ fontFamily: "var(--font-display)" }}
-      >
-        Typography
-      </h1>
-      <p
-        className="mt-3 max-w-[55ch] text-[15px] leading-relaxed"
-        style={{ color: "var(--text-tertiary)" }}
-      >
-        Three fonts. Display for presence, sans for clarity, mono for precision.
-        Loaded via next/font for zero layout shift.
-      </p>
+      <motion.div variants={v}>
+        <span
+          className="text-[11px] uppercase tracking-[0.2em] text-ink/30"
+          style={{ fontFamily: "var(--font-code)" }}
+        >
+          Design Tokens
+        </span>
+        <h1
+          className="mt-2 text-[clamp(28px,4vw,48px)] font-bold leading-[1.1] tracking-[-0.02em] text-ink"
+          style={{ fontFamily: "var(--font-display)" }}
+        >
+          Typography
+        </h1>
+        <p
+          className="mt-3 max-w-[55ch] text-[15px] leading-relaxed"
+          style={{ color: "var(--text-tertiary)" }}
+        >
+          Three fonts. Display for presence, sans for clarity, mono for precision.
+          Loaded via next/font for zero layout shift.
+        </p>
+      </motion.div>
 
       {/* Font Families */}
-      <div className="mt-16 space-y-4">
+      <motion.div className="mt-16 space-y-4" variants={v}>
         <div className="mb-8">
           <span
             className="text-[11px] uppercase tracking-[0.2em] text-ink/30"
@@ -125,10 +166,10 @@ export default function TypographyPage() {
             </span>
           </div>
         ))}
-      </div>
+      </motion.div>
 
       {/* Heading Scale */}
-      <div className="mt-16">
+      <motion.div className="mt-16" variants={v}>
         <div className="mb-8">
           <span
             className="text-[11px] uppercase tracking-[0.2em] text-ink/30"
@@ -168,7 +209,7 @@ export default function TypographyPage() {
                   letterSpacing: tracking,
                   lineHeight: "1.1",
                 }}
-                className={`text-ink ${css.includes("clamp") ? "" : ""}`}
+                className="text-ink"
               >
                 {css.includes("clamp") ? (
                   <span className={
@@ -185,10 +226,10 @@ export default function TypographyPage() {
             </div>
           ))}
         </div>
-      </div>
+      </motion.div>
 
       {/* Text Styles */}
-      <div className="mt-16">
+      <motion.div className="mt-16" variants={v}>
         <div className="mb-8">
           <span
             className="text-[11px] uppercase tracking-[0.2em] text-ink/30"
@@ -233,10 +274,10 @@ export default function TypographyPage() {
             </div>
           ))}
         </div>
-      </div>
+      </motion.div>
 
       {/* Guidelines */}
-      <div className="mt-16">
+      <motion.div className="mt-16" variants={v}>
         <div className="mb-8">
           <span
             className="text-[11px] uppercase tracking-[0.2em] text-ink/30"
@@ -273,7 +314,7 @@ export default function TypographyPage() {
             should render in JetBrains Mono at 11-12px.
           </p>
         </div>
-      </div>
-    </section>
+      </motion.div>
+    </motion.section>
   );
 }

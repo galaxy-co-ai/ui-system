@@ -1,5 +1,29 @@
 "use client";
 
+import { motion, useReducedMotion } from "framer-motion";
+
+/* ---------------------------------------------------------------------------
+ * Animation
+ * --------------------------------------------------------------------------- */
+
+const staggerContainer = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.08 } },
+};
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 8 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] as const },
+  },
+};
+
+/* ---------------------------------------------------------------------------
+ * Data
+ * --------------------------------------------------------------------------- */
+
 const neutralPalette = [
   { step: 1, hex: "#0f0e0d", variable: "--neutral-1", usage: "Background, darkest surface" },
   { step: 2, hex: "#1a1918", variable: "--neutral-2", usage: "Elevated surface, cards" },
@@ -53,6 +77,10 @@ const semanticText = [
   { variable: "--text-tertiary", value: "var(--neutral-6)", desc: "Muted text, placeholders" },
 ];
 
+/* ---------------------------------------------------------------------------
+ * Shared section header
+ * --------------------------------------------------------------------------- */
+
 function SectionHeader({ eyebrow, title }: { eyebrow: string; title: string }) {
   return (
     <div className="mb-8">
@@ -72,32 +100,47 @@ function SectionHeader({ eyebrow, title }: { eyebrow: string; title: string }) {
   );
 }
 
+/* ---------------------------------------------------------------------------
+ * Page
+ * --------------------------------------------------------------------------- */
+
 export default function ColorsPage() {
+  const prefersReducedMotion = useReducedMotion();
+  const rm = !!prefersReducedMotion;
+  const v = rm ? undefined : fadeUp;
+
   return (
-    <section className="mx-auto max-w-3xl px-8 pb-32 pt-20">
+    <motion.section
+      className="mx-auto max-w-3xl px-8 pb-32 pt-20"
+      variants={rm ? undefined : staggerContainer}
+      initial="hidden"
+      animate="show"
+    >
       {/* Page header */}
-      <span
-        className="text-[11px] uppercase tracking-[0.2em] text-ink/30"
-        style={{ fontFamily: "var(--font-code)" }}
-      >
-        Design Tokens
-      </span>
-      <h1
-        className="mt-2 text-[clamp(28px,4vw,48px)] font-bold leading-[1.1] tracking-[-0.02em] text-ink"
-        style={{ fontFamily: "var(--font-display)" }}
-      >
-        Colors
-      </h1>
-      <p
-        className="mt-3 max-w-[55ch] text-[15px] leading-relaxed"
-        style={{ color: "var(--text-tertiary)" }}
-      >
-        Warm-shifted neutrals, OKLch semantic tokens, and glass morphism
-        surfaces. Every color earns its place.
-      </p>
+      <motion.div variants={v}>
+        <span
+          className="text-[11px] uppercase tracking-[0.2em] text-ink/30"
+          style={{ fontFamily: "var(--font-code)" }}
+        >
+          Design Tokens
+        </span>
+        <h1
+          className="mt-2 text-[clamp(28px,4vw,48px)] font-bold leading-[1.1] tracking-[-0.02em] text-ink"
+          style={{ fontFamily: "var(--font-display)" }}
+        >
+          Colors
+        </h1>
+        <p
+          className="mt-3 max-w-[55ch] text-[15px] leading-relaxed"
+          style={{ color: "var(--text-tertiary)" }}
+        >
+          Warm-shifted neutrals, OKLch semantic tokens, and glass morphism
+          surfaces. Every color earns its place.
+        </p>
+      </motion.div>
 
       {/* Neutral Palette */}
-      <div className="mt-16">
+      <motion.div className="mt-16" variants={v}>
         <SectionHeader eyebrow="Foundation" title="Neutral Palette" />
         <div className="grid grid-cols-5 gap-2">
           {neutralPalette.map(({ step, hex, variable, usage }) => (
@@ -130,10 +173,10 @@ export default function ColorsPage() {
             </div>
           ))}
         </div>
-      </div>
+      </motion.div>
 
       {/* Semantic Text Colors */}
-      <div className="mt-16">
+      <motion.div className="mt-16" variants={v}>
         <SectionHeader eyebrow="Text" title="Semantic Text" />
         <div className="space-y-2">
           {semanticText.map(({ variable, value, desc }) => (
@@ -167,10 +210,10 @@ export default function ColorsPage() {
             </div>
           ))}
         </div>
-      </div>
+      </motion.div>
 
       {/* Glass & Surfaces */}
-      <div className="mt-16">
+      <motion.div className="mt-16" variants={v}>
         <SectionHeader eyebrow="Surfaces" title="Glass Morphism" />
         <p className="text-[13px] text-ink/40 -mt-4 mb-6 max-w-[50ch]">
           Applied to sidebar, floating nav, inspector drawer, and modal overlays.
@@ -233,10 +276,10 @@ export default function ColorsPage() {
             </div>
           ))}
         </div>
-      </div>
+      </motion.div>
 
       {/* Shadows */}
-      <div className="mt-16">
+      <motion.div className="mt-16" variants={v}>
         <SectionHeader eyebrow="Elevation" title="Shadows" />
         <div className="space-y-4">
           {shadows.map(({ variable, value, desc }) => (
@@ -273,10 +316,10 @@ export default function ColorsPage() {
             </div>
           ))}
         </div>
-      </div>
+      </motion.div>
 
       {/* Status Colors */}
-      <div className="mt-16">
+      <motion.div className="mt-16" variants={v}>
         <SectionHeader eyebrow="Semantic" title="Status Colors" />
         <div className="flex flex-wrap gap-3">
           {statusColors.map(({ label, border, bg, text }) => (
@@ -302,7 +345,7 @@ export default function ColorsPage() {
             </div>
           ))}
         </div>
-      </div>
-    </section>
+      </motion.div>
+    </motion.section>
   );
 }

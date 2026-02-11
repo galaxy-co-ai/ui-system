@@ -1,3 +1,29 @@
+"use client";
+
+import { motion, useReducedMotion } from "framer-motion";
+
+/* ---------------------------------------------------------------------------
+ * Animation
+ * --------------------------------------------------------------------------- */
+
+const staggerContainer = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.08 } },
+};
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 8 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] as const },
+  },
+};
+
+/* ---------------------------------------------------------------------------
+ * Data
+ * --------------------------------------------------------------------------- */
+
 const radiusScale = [
   { name: "xs", value: "6px", variable: "--radius-xs", usage: "Badges, small chips" },
   { name: "sm", value: "8px", variable: "--radius-sm", usage: "Buttons, nav items, inputs" },
@@ -35,31 +61,46 @@ const borderPatterns = [
   { pattern: "bg-ink/[0.08]", usage: "Active/selected item background" },
 ];
 
+/* ---------------------------------------------------------------------------
+ * Page
+ * --------------------------------------------------------------------------- */
+
 export default function LayoutPage() {
+  const prefersReducedMotion = useReducedMotion();
+  const rm = !!prefersReducedMotion;
+  const v = rm ? undefined : fadeUp;
+
   return (
-    <section className="mx-auto max-w-3xl px-8 pb-32 pt-20">
+    <motion.section
+      className="mx-auto max-w-3xl px-8 pb-32 pt-20"
+      variants={rm ? undefined : staggerContainer}
+      initial="hidden"
+      animate="show"
+    >
       {/* Page header */}
-      <span
-        className="text-[11px] uppercase tracking-[0.2em] text-ink/30"
-        style={{ fontFamily: "var(--font-code)" }}
-      >
-        Design Tokens
-      </span>
-      <h1
-        className="mt-2 text-[clamp(28px,4vw,48px)] font-bold leading-[1.1] tracking-[-0.02em] text-ink"
-        style={{ fontFamily: "var(--font-display)" }}
-      >
-        Layout
-      </h1>
-      <p
-        className="mt-3 max-w-[55ch] text-[15px] leading-relaxed"
-        style={{ color: "var(--text-tertiary)" }}
-      >
-        4px grid, proximity equals relationship, every measurement on a consistent scale.
-      </p>
+      <motion.div variants={v}>
+        <span
+          className="text-[11px] uppercase tracking-[0.2em] text-ink/30"
+          style={{ fontFamily: "var(--font-code)" }}
+        >
+          Design Tokens
+        </span>
+        <h1
+          className="mt-2 text-[clamp(28px,4vw,48px)] font-bold leading-[1.1] tracking-[-0.02em] text-ink"
+          style={{ fontFamily: "var(--font-display)" }}
+        >
+          Layout
+        </h1>
+        <p
+          className="mt-3 max-w-[55ch] text-[15px] leading-relaxed"
+          style={{ color: "var(--text-tertiary)" }}
+        >
+          4px grid, proximity equals relationship, every measurement on a consistent scale.
+        </p>
+      </motion.div>
 
       {/* Border Radius */}
-      <div className="mt-16">
+      <motion.div className="mt-16" variants={v}>
         <div className="mb-8">
           <span
             className="text-[11px] uppercase tracking-[0.2em] text-ink/30"
@@ -102,10 +143,10 @@ export default function LayoutPage() {
             </div>
           ))}
         </div>
-      </div>
+      </motion.div>
 
       {/* Panel Dimensions */}
-      <div className="mt-16">
+      <motion.div className="mt-16" variants={v}>
         <div className="mb-8">
           <span
             className="text-[11px] uppercase tracking-[0.2em] text-ink/30"
@@ -145,10 +186,10 @@ export default function LayoutPage() {
             </div>
           ))}
         </div>
-      </div>
+      </motion.div>
 
       {/* Spacing Patterns */}
-      <div className="mt-16">
+      <motion.div className="mt-16" variants={v}>
         <div className="mb-8">
           <span
             className="text-[11px] uppercase tracking-[0.2em] text-ink/30"
@@ -183,10 +224,10 @@ export default function LayoutPage() {
             </div>
           ))}
         </div>
-      </div>
+      </motion.div>
 
       {/* Border & Surface Patterns */}
-      <div className="mt-16">
+      <motion.div className="mt-16" variants={v}>
         <div className="mb-8">
           <span
             className="text-[11px] uppercase tracking-[0.2em] text-ink/30"
@@ -218,7 +259,7 @@ export default function LayoutPage() {
             </div>
           ))}
         </div>
-      </div>
-    </section>
+      </motion.div>
+    </motion.section>
   );
 }

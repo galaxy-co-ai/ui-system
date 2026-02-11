@@ -1,6 +1,29 @@
 "use client";
 
 import { useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
+
+/* ---------------------------------------------------------------------------
+ * Animation
+ * --------------------------------------------------------------------------- */
+
+const staggerContainer = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.08 } },
+};
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 8 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] as const },
+  },
+};
+
+/* ---------------------------------------------------------------------------
+ * Data
+ * --------------------------------------------------------------------------- */
 
 const easingCurves = [
   {
@@ -59,6 +82,10 @@ const principles = [
   },
 ];
 
+/* ---------------------------------------------------------------------------
+ * SVG easing curve visualization
+ * --------------------------------------------------------------------------- */
+
 function EasingCurve({ x1, y1, x2, y2 }: { x1: number; y1: number; x2: number; y2: number }) {
   const w = 120;
   const h = 120;
@@ -101,6 +128,10 @@ function EasingCurve({ x1, y1, x2, y2 }: { x1: number; y1: number; x2: number; y
   );
 }
 
+/* ---------------------------------------------------------------------------
+ * Interactive motion demo
+ * --------------------------------------------------------------------------- */
+
 function MotionDemo({ easing, duration }: { easing: string; duration: string }) {
   const [playing, setPlaying] = useState(false);
 
@@ -128,32 +159,47 @@ function MotionDemo({ easing, duration }: { easing: string; duration: string }) 
   );
 }
 
+/* ---------------------------------------------------------------------------
+ * Page
+ * --------------------------------------------------------------------------- */
+
 export default function MotionPage() {
+  const prefersReducedMotion = useReducedMotion();
+  const rm = !!prefersReducedMotion;
+  const v = rm ? undefined : fadeUp;
+
   return (
-    <section className="mx-auto max-w-3xl px-8 pb-32 pt-20">
+    <motion.section
+      className="mx-auto max-w-3xl px-8 pb-32 pt-20"
+      variants={rm ? undefined : staggerContainer}
+      initial="hidden"
+      animate="show"
+    >
       {/* Page header */}
-      <span
-        className="text-[11px] uppercase tracking-[0.2em] text-ink/30"
-        style={{ fontFamily: "var(--font-code)" }}
-      >
-        Design Tokens
-      </span>
-      <h1
-        className="mt-2 text-[clamp(28px,4vw,48px)] font-bold leading-[1.1] tracking-[-0.02em] text-ink"
-        style={{ fontFamily: "var(--font-display)" }}
-      >
-        Motion
-      </h1>
-      <p
-        className="mt-3 max-w-[55ch] text-[15px] leading-relaxed"
-        style={{ color: "var(--text-tertiary)" }}
-      >
-        Three easing curves, three durations, six principles.
-        Motion should feel inevitable, not decorative.
-      </p>
+      <motion.div variants={v}>
+        <span
+          className="text-[11px] uppercase tracking-[0.2em] text-ink/30"
+          style={{ fontFamily: "var(--font-code)" }}
+        >
+          Design Tokens
+        </span>
+        <h1
+          className="mt-2 text-[clamp(28px,4vw,48px)] font-bold leading-[1.1] tracking-[-0.02em] text-ink"
+          style={{ fontFamily: "var(--font-display)" }}
+        >
+          Motion
+        </h1>
+        <p
+          className="mt-3 max-w-[55ch] text-[15px] leading-relaxed"
+          style={{ color: "var(--text-tertiary)" }}
+        >
+          Three easing curves, three durations, six principles.
+          Motion should feel inevitable, not decorative.
+        </p>
+      </motion.div>
 
       {/* Easing Curves */}
-      <div className="mt-16">
+      <motion.div className="mt-16" variants={v}>
         <div className="mb-8">
           <span
             className="text-[11px] uppercase tracking-[0.2em] text-ink/30"
@@ -200,10 +246,10 @@ export default function MotionPage() {
             </div>
           ))}
         </div>
-      </div>
+      </motion.div>
 
       {/* Duration Scale */}
-      <div className="mt-16">
+      <motion.div className="mt-16" variants={v}>
         <div className="mb-8">
           <span
             className="text-[11px] uppercase tracking-[0.2em] text-ink/30"
@@ -262,10 +308,10 @@ export default function MotionPage() {
             </div>
           ))}
         </div>
-      </div>
+      </motion.div>
 
       {/* Principles */}
-      <div className="mt-16">
+      <motion.div className="mt-16" variants={v}>
         <div className="mb-8">
           <span
             className="text-[11px] uppercase tracking-[0.2em] text-ink/30"
@@ -292,7 +338,7 @@ export default function MotionPage() {
             </div>
           ))}
         </div>
-      </div>
-    </section>
+      </motion.div>
+    </motion.section>
   );
 }
