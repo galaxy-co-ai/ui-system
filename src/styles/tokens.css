@@ -129,9 +129,11 @@
 
 /* ------------------------------------------------
    Typography
-   Fonts loaded via next/font/google in layout.tsx
+   Fonts loaded via next/font/google in layout.tsx.
+   Must be on `body` (not :root) because next/font
+   sets --font-eb-garamond etc. via classes on <body>.
    ------------------------------------------------ */
-:root {
+body {
   --font-display: var(--font-eb-garamond), Georgia, 'Times New Roman', serif;
   --font-body: var(--font-dm-sans), system-ui, -apple-system, sans-serif;
   --font-code: var(--font-jetbrains-mono), 'Courier New', monospace;

@@ -1,6 +1,8 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
 /* ---------------------------------------------------------------------------
  * Animation
@@ -38,27 +40,30 @@ const neutralPalette = [
 ];
 
 const glassTokens = [
-  { variable: "--surface-glass", value: "rgba(17, 17, 17, 0.85)", desc: "Glass panel background" },
-  { variable: "--glass-blur", value: "20px", desc: "Backdrop blur amount" },
-  { variable: "--glass-saturate", value: "180%", desc: "Backdrop color saturation" },
-  { variable: "--glass-surface-alpha", value: "0.85", desc: "Surface transparency" },
-  { variable: "--overlay-dark", value: "rgba(0, 0, 0, 0.5)", desc: "Modal/drawer overlay" },
+  { variable: "--surface-glass", light: "rgba(255, 255, 255, 0.82)", dark: "rgba(17, 17, 17, 0.85)", desc: "Glass panel background" },
+  { variable: "--glass-blur", light: "20px", dark: "20px", desc: "Backdrop blur amount" },
+  { variable: "--glass-saturate", light: "180%", dark: "180%", desc: "Backdrop color saturation" },
+  { variable: "--glass-surface-alpha", light: "0.82", dark: "0.85", desc: "Surface transparency" },
+  { variable: "--overlay-dark", light: "rgba(0, 0, 0, 0.3)", dark: "rgba(0, 0, 0, 0.5)", desc: "Modal/drawer overlay" },
 ];
 
 const shadows = [
   {
     variable: "--shadow-glass",
-    value: "0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.06)",
+    light: "0 8px 32px rgba(0,0,0,0.06), 0 1px 0 rgba(0,0,0,0.04)",
+    dark: "0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.06)",
     desc: "Glass panels (nav, drawer)",
   },
   {
     variable: "--shadow-panel",
-    value: "0 4px 24px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.08)",
+    light: "0 4px 24px rgba(0,0,0,0.06), 0 1px 4px rgba(0,0,0,0.04)",
+    dark: "0 4px 24px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.08)",
     desc: "Sidebar, floating panels",
   },
   {
     variable: "--shadow-active",
-    value: "0 2px 8px rgba(0,0,0,0.2)",
+    light: "0 2px 8px rgba(0,0,0,0.08)",
+    dark: "0 2px 8px rgba(0,0,0,0.2)",
     desc: "Active tab, pressed state",
   },
 ];
@@ -72,9 +77,9 @@ const statusColors = [
 ];
 
 const semanticText = [
-  { variable: "--text-primary", value: "#e8e8e8", desc: "Headings, primary content" },
-  { variable: "--text-secondary", value: "var(--neutral-7)", desc: "Supporting text, labels" },
-  { variable: "--text-tertiary", value: "var(--neutral-6)", desc: "Muted text, placeholders" },
+  { variable: "--text-primary", light: "#1a1918", dark: "#e8e8e8", desc: "Headings, primary content" },
+  { variable: "--text-secondary", light: "#6b6b6b", dark: "#8a8a8a", desc: "Supporting text, labels" },
+  { variable: "--text-tertiary", light: "#8a8a8a", dark: "#6b6b6b", desc: "Muted text, placeholders" },
 ];
 
 /* ---------------------------------------------------------------------------
@@ -108,6 +113,11 @@ export default function ColorsPage() {
   const prefersReducedMotion = useReducedMotion();
   const rm = !!prefersReducedMotion;
   const v = rm ? undefined : fadeUp;
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  const isDark = mounted ? resolvedTheme === "dark" : true;
+  const tv = (t: { light: string; dark: string }) => (isDark ? t.dark : t.light);
 
   return (
     <motion.section
@@ -179,16 +189,16 @@ export default function ColorsPage() {
       <motion.div className="mt-16" variants={v}>
         <SectionHeader eyebrow="Text" title="Semantic Text" />
         <div className="space-y-2">
-          {semanticText.map(({ variable, value, desc }) => (
+          {semanticText.map((token) => (
             <div
-              key={variable}
+              key={token.variable}
               className="flex items-center gap-4 border border-ink/[0.06] bg-ink/[0.02] px-5 py-3.5"
               style={{ borderRadius: "var(--radius-lg)" }}
             >
               <div
                 className="h-8 w-8 shrink-0 border border-ink/[0.06]"
                 style={{
-                  backgroundColor: variable === "--text-primary" ? "#e8e8e8" : variable === "--text-secondary" ? "#8a8a8a" : "#6b6b6b",
+                  backgroundColor: `var(${token.variable})`,
                   borderRadius: "var(--radius-sm)",
                 }}
               />
@@ -197,15 +207,15 @@ export default function ColorsPage() {
                   className="text-[12px] text-ink/70"
                   style={{ fontFamily: "var(--font-code)" }}
                 >
-                  {variable}
+                  {token.variable}
                 </span>
-                <p className="text-[12px] text-ink/35 mt-0.5">{desc}</p>
+                <p className="text-[12px] text-ink/35 mt-0.5">{token.desc}</p>
               </div>
               <span
                 className="text-[11px] text-ink/25 shrink-0"
                 style={{ fontFamily: "var(--font-code)" }}
               >
-                {value}
+                {tv(token)}
               </span>
             </div>
           ))}
@@ -252,9 +262,9 @@ export default function ColorsPage() {
         </div>
         {/* Token table */}
         <div className="space-y-2">
-          {glassTokens.map(({ variable, value, desc }) => (
+          {glassTokens.map((token) => (
             <div
-              key={variable}
+              key={token.variable}
               className="flex items-center justify-between border border-ink/[0.06] bg-ink/[0.02] px-5 py-3"
               style={{ borderRadius: "var(--radius-lg)" }}
             >
@@ -263,15 +273,15 @@ export default function ColorsPage() {
                   className="text-[12px] text-ink/70"
                   style={{ fontFamily: "var(--font-code)" }}
                 >
-                  {variable}
+                  {token.variable}
                 </span>
-                <p className="text-[11px] text-ink/30 mt-0.5">{desc}</p>
+                <p className="text-[11px] text-ink/30 mt-0.5">{token.desc}</p>
               </div>
               <span
                 className="text-[11px] text-ink/25 shrink-0 ml-4"
                 style={{ fontFamily: "var(--font-code)" }}
               >
-                {value}
+                {tv(token)}
               </span>
             </div>
           ))}
@@ -282,9 +292,9 @@ export default function ColorsPage() {
       <motion.div className="mt-16" variants={v}>
         <SectionHeader eyebrow="Elevation" title="Shadows" />
         <div className="space-y-4">
-          {shadows.map(({ variable, value, desc }) => (
+          {shadows.map((token) => (
             <div
-              key={variable}
+              key={token.variable}
               className="border border-ink/[0.06] bg-ink/[0.02] px-5 py-4"
               style={{ borderRadius: "var(--radius-lg)" }}
             >
@@ -294,16 +304,16 @@ export default function ColorsPage() {
                     className="text-[12px] text-ink/70"
                     style={{ fontFamily: "var(--font-code)" }}
                   >
-                    {variable}
+                    {token.variable}
                   </span>
-                  <p className="text-[12px] text-ink/35 mt-0.5">{desc}</p>
+                  <p className="text-[12px] text-ink/35 mt-0.5">{token.desc}</p>
                 </div>
                 <div
                   className="h-10 w-16 shrink-0"
                   style={{
                     backgroundColor: "var(--neutral-2)",
                     borderRadius: "var(--radius-sm)",
-                    boxShadow: value,
+                    boxShadow: `var(${token.variable})`,
                   }}
                 />
               </div>
@@ -311,7 +321,7 @@ export default function ColorsPage() {
                 className="block mt-2 text-[10px] text-ink/20 break-all leading-relaxed"
                 style={{ fontFamily: "var(--font-code)" }}
               >
-                {value}
+                {tv(token)}
               </span>
             </div>
           ))}

@@ -530,11 +530,21 @@ const componentDefs: ComponentDef[] = [
         </DialogTrigger>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Example Dialog</DialogTitle>
+            <DialogTitle>Confirm Action</DialogTitle>
             <DialogDescription>
-              Glass morphism overlay with spring animation.
+              This action cannot be undone. Are you sure you want to continue?
             </DialogDescription>
           </DialogHeader>
+          <DialogFooter className="mt-4">
+            <Button variant="ghost" size="sm">Cancel</Button>
+            <Button
+              size="sm"
+              className="bg-cta text-cta-foreground hover:bg-cta/90"
+              style={{ borderRadius: "var(--radius-sm)" }}
+            >
+              Confirm
+            </Button>
+          </DialogFooter>
         </DialogContent>
       </Dialog>
     ),
